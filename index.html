@@ -1,14 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>test</title>
+	<meta charset="UTF-8">
+    <title>画像読取</title>
+
+    <script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js'></script>
+	<script>
+	// ユーザ指定のファイルを読み込み、画像認識の関数を呼び出す。
+	function read_in() {
+	  var reader = new FileReader();
+	  reader.onload = function (e) {
+	    //選択された画像をimg要素として表示する。
+	    document.getElementById("read_image").src = e.target.result;
+	    //画像認識を行う
+	    recognize_image();
+	  }
+	  // 画像ファイルをdata URLとして読み込むように指示しておく。
+	  reader.readAsDataURL(document.getElementById("input_image_file").files[0]);
+	}
+
+
+	// 画像認識を行う。
+	function recognize_image() {
+	  //結果出力先の要素を取得する。
+	  var txt_out = document.getElementById("text_of_read_image");
+	  //複数回、連続して実行するときのために、最初に中身を捨てる。
+	  txt_out.innerHTML = "";
+	  //指定された言語のコードを取得する。
+	  var lang_list = document.getElementById("lang_options");
+	  var selected_lang = lang_list.options[lang_list.selectedIndex].value;
+	  console.log(selected_lang + "が選択されました。");
+	  
+	  document.getElementById("msg").textContent = "[処理を開始しました。]\n";
+
+	  //画像認識
+	  Tesseract.recognize(
+	    document.getElementById("read_image").src,
+	    { 
+	      lang: selected_lang
+	    })
+	  .progress(function(m) {
+	    document.getElementById("msg").textContent += "?? ";
+	    //console.log("途中経過: " + m + "\n");
+	  })
+	  .catch(function(e) {
+	    document.getElementById("msg").textContent += "[エラーです: " + e + "]";
+	    console.log("エラーです: " + e);
+	  })
+	  .then(function(result) {
+	    txt_out.innerHTML = result.text;
+	  })
+	  .finally(function(r) {
+	    document.getElementById("msg").textContent += "[処理が終わりました]\n";
+	  });
+	}
+
+	</script>
+
+//	<link rel="stylesheet" href="../article.css" type="text/css">
 </head>
 <body>
-    <div id="test"></div>
-    <img src="test.png">
-    <div id="test2"></div>
-    <img src="test2.png">
-    <script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js'></script>
-    <script type="text/javascript" src="index.js"></script>
+    <from name="f">
+        <ol>
+        	<li>"言語指定"
+				<select name="lang_options" id="lang_options">
+					<option value="eng" selected="">English</option>
+					<option value="jpn">Japanese</option>
+					<option value="num">Number only</option>
+				</select>
+			</li>
+        	<li>"画像指定"
+				<input type="file" id="input_image_file" name="input_image_file">
+			</li>
+			<li>"読取実行"
+				<input type="button" value="読取実行" onclick="read_in()">
+			</li>
+		</ol>
+    </from>
+
+	<table style="margin: auto;">
+		<tbody><tr><th>認識対象画像</th><th>読み取り結果</th></tr>
+		<tr>
+			<td style="overflow: auto;"><img id="read_image" style="max-width: 450px; max-height: 450px;"></td>
+			<td id="text_of_read_image" style="white-space: pre; font-family: monospace;"></td>
+		</tr>
+		</tbody>
+	</table>
+
+	<p id="msg" style="color: darkred; font-style: italic; overflow: auto; max-height: 10ex;"></p>
+
+
+
 </body>
 </html>
