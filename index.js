@@ -26,7 +26,8 @@ function recognize_image() {
   console.log(selected_lang + "が選択されました。");
   
   var startTime = new Date();
-  document.getElementById("msg").textContent = "[処理開始${startTime}ms]\n";
+  var starthms = startTime.getHours() + "h" + startTime.getMinutes() + "m" + startTime.getSeconds() + "s";
+  document.getElementById("msg").textContent = "[処理開始" + starthms + "]\n";
 
   //画像認識
   Tesseract.recognize(
@@ -44,7 +45,8 @@ function recognize_image() {
   })
   .finally(function(r) {
     var endTime = new Date();
-    document.getElementById("msg").textContent += "[処理終了${endTime-startTime}ms]\n";
+    var endhms = endTime.getHours() + "h" + endTime.getMinutes() + "m" + endTime.getSeconds() + "s";
+    document.getElementById("msg").textContent += "[処理終了" + endhms + "]\n";
   });
 }
 

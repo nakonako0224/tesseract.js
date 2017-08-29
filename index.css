@@ -1,0 +1,15 @@
+<style>
+body {
+    background: #eeeeee;
+    font-family: Meiryo;
+}
+
+form {
+  background: #ffffff;
+  width: 500px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #cccccc;
+  margin: 30px auto;
+}
+</style>
