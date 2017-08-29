@@ -2,14 +2,29 @@
 body {
     background: #eeeeee;
     font-family: Meiryo;
+	text-align: center;
+}
+
+p {
+    font-family: Meiryo;
+	text-align: center;
 }
 
 form {
   background: #ffffff;
+  font-weight: bold;
+  text-align: Left;
   width: 500px;
   padding: 10px;
-  text-align: center;
-  border: 1px solid #cccccc;
+  border: 2px solid #cccccc;
   margin: 30px auto;
 }
+
+#hr_red {
+   border-width: 1px 0px 0px 0px;
+   border-style: solid;
+   border-color: red;
+   height: 1px;/*(Å¶å√Ç¢IEóp)*/
+}
+
 </style>

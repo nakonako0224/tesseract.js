@@ -15,7 +15,6 @@ function read_in() {
 
 // 画像認識を行う。
 function recognize_image() {
-
   //結果出力先の要素を取得する。
   var txt_out = document.getElementById("text_of_read_image");
   //複数回、連続して実行するときのために、最初に中身を捨てる。
