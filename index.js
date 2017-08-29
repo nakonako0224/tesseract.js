@@ -33,10 +33,7 @@ function recognize_image() {
     { 
       lang: selected_lang
     })
-  .progress(function(m) {
-    document.getElementById("msg").textContent += ">> ";
-    //console.log("途中経過: " + m + "\n");
-  })
+  .progress(progressUpdate)
   .catch(function(e) {
     document.getElementById("msg").textContent += "[エラーです: " + e + "]";
     console.log("エラーです: " + e);
@@ -47,4 +44,41 @@ function recognize_image() {
   .finally(function(r) {
     document.getElementById("msg").textContent += "[処理が終わりました]\n";
   });
+}
+
+//進捗管理
+function progressUpdate(packet){
+	var log = document.getElementById('log');
+
+	if(log.firstChild && log.firstChild.status === packet.status){
+		if('progress' in packet){
+			var progress = log.firstChild.querySelector('progress')
+			progress.value = packet.progress
+		}
+	}else{
+		var line = document.createElement('div');
+		line.status = packet.status;
+		var status = document.createElement('div')
+		status.className = 'status'
+		status.appendChild(document.createTextNode(packet.status))
+		line.appendChild(status)
+
+		if('progress' in packet){
+			var progress = document.createElement('progress')
+			progress.value = packet.progress
+			progress.max = 1
+			line.appendChild(progress)
+		}
+
+
+		if(packet.status == 'done'){
+			var pre = document.createElement('pre')
+			pre.appendChild(document.createTextNode(packet.data.text))
+			line.innerHTML = ''
+			line.appendChild(pre)
+
+		}
+
+		log.insertBefore(line, log.firstChild)
+	}
 }
