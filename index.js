@@ -25,7 +25,7 @@ function recognize_image() {
   console.log(selected_lang + "が選択されました。");
   
   var startTime = new Date();
-  var starthms = startTime.getHours() + "h" + startTime.getMinutes() + "m" + startTime.getSeconds() + "s";
+  var starthms = startTime.getHours() + ":" + startTime.getMinutes() + "." + startTime.getSeconds();
   document.getElementById("msg").textContent = "[処理開始" + starthms + "]\n";
 
   //画像認識
@@ -44,7 +44,7 @@ function recognize_image() {
   })
   .finally(function(r) {
     var endTime = new Date();
-    var endhms = endTime.getHours() + "h" + endTime.getMinutes() + "m" + endTime.getSeconds() + "s";
+    var endhms = endTime.getHours() + ":" + endTime.getMinutes() + "." + endTime.getSeconds();
     document.getElementById("msg").textContent += "[処理終了" + endhms + "]\n";
   });
 }
