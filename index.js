@@ -18,6 +18,7 @@ function recognize_image() {
 	var txt_out = document.getElementById("text_of_read_image");
 	//複数回、連続して実行するときのために、最初に中身を捨てる
 	txt_out.innerHTML = "";
+	msg.innerHTML = "";
 	//指定された言語のコードを取得
 	var lang_list = document.getElementById("lang_options");
 	var selected_lang = lang_list.options[lang_list.selectedIndex].value;
@@ -29,7 +30,7 @@ function recognize_image() {
 
 	//画像認識
 	Tesseract.recognize(document.getElementById("read_image").src, { 
-			lang: selected_lang
+			lang: selected_lang,
 		})
 		.progress(progressUpdate)
 		.catch(function(e) {

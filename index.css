@@ -17,6 +17,16 @@ form {
 	margin: 30px auto;
 }
 
+#l-box {
+	width: 49%;
+    float: left;
+}
+
+#r-box {
+	width: 49%;
+	float: right;
+}
+
 h1 {
 	font-size: large;
 	font-style: oblique;
