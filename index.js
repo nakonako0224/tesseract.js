@@ -1,19 +1,18 @@
-// ユーザ指定のファイルを読み込み、画像認識の関数を呼び出す。
+//ファイルの読み込み、画像認識の関数呼び出し
 function read_in() {
 	var reader = new FileReader();
 	reader.onload = function (e) {
-		//選択された画像をimg要素として表示する。
-		//document.getElementById("read_image").src = e.target.result;
+		//選択された画像をimg要素として表示する
 		read_image.src = reader.result
 		//画像認識を行う
 		recognize_image();
 	}
-	// 画像ファイルをdata URLとして読み込むように指示しておく。
+	// 画像ファイルをdata URLとして読み込むように指示
 	reader.readAsDataURL(document.getElementById("input_image_file").files[0]);
 }
 
 
-// 画像認識を行う。
+//画像認識
 function recognize_image() {
   //結果出力先の要素を取得する。
   var txt_out = document.getElementById("text_of_read_image");
