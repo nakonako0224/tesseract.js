@@ -8,6 +8,16 @@ p {
 	text-align: center;
 }
 
+a:link { color: #0000ff; }
+a:visited { color: #000080; }
+a:hover { color: #ff0000; }
+a:active { color: #ff8000; }
+
+#cmt {
+	color: #ff0000;
+	font-weight: lighter;
+}
+
 img {
     font-family: Meiryo;
 	text-align: center;
