@@ -1,36 +1,36 @@
-//ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İA‰æ‘œ”F¯‚ÌŠÖ”ŒÄ‚Ño‚µ
+ï»¿//ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã€ç”»åƒèªè­˜ã®é–¢æ•°å‘¼ã³å‡ºã—
 function read_in() {
 	var reader = new FileReader();
 	reader.onload = function (e) {
-		//‘I‘ğ‚³‚ê‚½‰æ‘œ‚ğimg—v‘f‚Æ‚µ‚Ä•\¦
+		//é¸æŠã•ã‚ŒãŸç”»åƒã‚’imgè¦ç´ ã¨ã—ã¦è¡¨ç¤º
 		read_image.src = reader.result
-		//‰æ‘œ”F¯ŠÖ”
+		//ç”»åƒèªè­˜é–¢æ•°
 		recognize_image();
 	}
-	// ‰æ‘œƒtƒ@ƒCƒ‹‚ğdata URL‚Æ‚µ‚Ä“Ç‚İ‚Ş‚æ‚¤‚Éw¦
+	// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’data URLã¨ã—ã¦èª­ã¿è¾¼ã‚€ã‚ˆã†ã«æŒ‡ç¤º
 	reader.readAsDataURL(document.getElementById("input_image_file").files[0]);
 }
 
 
-//‰æ‘œ”F¯
+//ç”»åƒèªè­˜
 function recognize_image() {
-	//Œ‹‰Êo—Íæ‚Ì—v‘f‚ğæ“¾
+	//çµæœå‡ºåŠ›å…ˆã®è¦ç´ ã‚’å–å¾—
 	var txt_out = document.getElementById("text_of_read_image");
-	//•¡”‰ñA˜A‘±‚µ‚ÄÀs‚·‚é‚Æ‚«‚Ì‚½‚ß‚ÉAÅ‰‚É’†g‚ğÌ‚Ä‚é
+	//è¤‡æ•°å›ã€é€£ç¶šã—ã¦å®Ÿè¡Œã™ã‚‹ã¨ãã®ãŸã‚ã«ã€æœ€åˆã«ä¸­èº«ã‚’æ¨ã¦ã‚‹
 	txt_out.innerHTML = "";
 	msg.innerHTML = "";
-	//w’è‚³‚ê‚½Œ¾Œê‚ÌƒR[ƒh‚ğæ“¾
+	//æŒ‡å®šã•ã‚ŒãŸè¨€èªã®ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 	var lang_list = document.getElementById("lang_options");
 	var selected_lang = lang_list.options[lang_list.selectedIndex].value;
-	console.log(selected_lang + "‚ª‘I‘ğ‚³‚ê‚Ü‚µ‚½B");
+	console.log(selected_lang + "ãŒé¸æŠã•ã‚Œã¾ã—ãŸã€‚");
 
 	var startTime = new Date();
 	var starthms = startTime.getHours() + ":" + startTime.getMinutes() + "." + startTime.getSeconds();
-	document.getElementById("msg").textContent = "[ˆ—ŠJn" + starthms + "]\n";
+	document.getElementById("msg").textContent = "[å‡¦ç†é–‹å§‹" + starthms + "]\n";
 
-	//‰æ‘œ”F¯
+	//ç”»åƒèªè­˜
 	Tesseract.recognize(document.getElementById("read_image").src, { 
-			lang: selected_lang,
+			lang: selected_lang
 		})
 		.progress(progressUpdate)
 		.catch(function(e) {
@@ -43,11 +43,11 @@ function recognize_image() {
 		.finally(function(r) {
 			var endTime = new Date();
 			var endhms = endTime.getHours() + ":" + endTime.getMinutes() + "." + endTime.getSeconds();
-			document.getElementById("msg").textContent += "[ˆ—I—¹" + endhms + "]\n";
+			document.getElementById("msg").textContent += "[å‡¦ç†çµ‚äº†" + endhms + "]\n";
 		});
 }
 
-//i’»ŠÇ—
+//é€²æ—ç®¡ç†
 function progressUpdate(packet){
 	var log = document.getElementById('log');
 

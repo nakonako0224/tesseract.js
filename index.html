@@ -1,44 +1,44 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="Shift_JIS">
-    <title>•¶Žš“ÇŽæ</title>
+	<meta charset="UTF-8">
+    <title>æ–‡å­—èª­å–</title>
 	<link rel="stylesheet" type="text/css" href="./index.css">
 	<script src="https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js"></script>
 	<script type="text/javascript" src="./index.js"></script>
 </head>
 <body>
-	<a href="https://github.com/KM04092/tesseract.js" target="_blank">GithubƒŠƒ“ƒNiƒTƒ“ƒvƒ‹“®‰æj</a>
+	<a href="https://github.com/KM04092/tesseract.js" target="_blank">Githubãƒªãƒ³ã‚¯ï¼ˆã‚µãƒ³ãƒ—ãƒ«å‹•ç”»ï¼‰</a>
     <form name="f">
-		<h1>‘€ì</h1>
+		<h1>æ“ä½œ</h1>
         <ol>
-        	<li>Œ¾ŒêŽw’è
+        	<li>è¨€èªžæŒ‡å®š
 				<select name="lang_options" id="lang_options">
-					<option value="eng" selected>‰pŒê</option>
-					<option value="jpn">“ú–{Œê(¸“xˆ«)</option>
+					<option value="eng" selected>è‹±èªž</option>
+					<option value="jpn">æ—¥æœ¬èªž(ç²¾åº¦æ‚ª)</option>
 				</select>
 			</li>
-        	<li>‰æ‘œŽw’è
+        	<li>ç”»åƒæŒ‡å®š
 				<input type="file" id="input_image_file" name="input_image_file"  accept="image/*;"  capture="camera">
 			</li>
-			<li>“ÇŽæŽÀs
-				<input type="button" value="ŽÀs" onClick="read_in()">
+			<li>èª­å–å®Ÿè¡Œ
+				<input type="button" value="å®Ÿè¡Œ" onClick="read_in()">
 			</li>
 		</ol>
     </form>
 	<hr>
-		<h1>“ÇŽæŒ‹‰Ê</h1>
+		<h1>èª­å–çµæžœ</h1>
 		<p id="text_of_read_image">output script</p>
 	<hr>
-		<h1>ƒƒbƒZ[ƒW</h1>
+		<h1>ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</h1>
 		<p id="msg"></p>
 	<hr>
 	<div id="l-box">
-		<h1>‘ÎÛ‰æ‘œ</h1>
+		<h1>å¯¾è±¡ç”»åƒ</h1>
 		<p><img id="read_image"  src="" alt="read_image" width="200"></p>
 	</div>
 	<div id="r-box">	
-		<h1>ˆ—ó‹µ</h1>
+		<h1>å‡¦ç†çŠ¶æ³</h1>
 		<p id="log" style="height: 214px; display: block;"></p>
 	</div>
 </body>
