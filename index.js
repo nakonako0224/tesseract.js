@@ -1,5 +1,13 @@
-﻿//ファイルの読み込み、画像認識の関数呼び出し
-function read_in() {
+﻿//ページ読み込み時
+function load_check() {
+	var browse = platform.name;
+	if(browse == "IE") {
+		document.getElementById("plat_form").textContent = "IEは非対応です！！" ;
+	}
+}
+
+//ファイルの読み込み、画像認識の関数呼び出し
+function read_in() {	
 	var reader = new FileReader();
 	reader.onload = function (e) {
 		//選択された画像をimg要素として表示
@@ -10,7 +18,6 @@ function read_in() {
 	// 画像ファイルをdata URLとして読み込むように指示
 	reader.readAsDataURL(document.getElementById("input_image_file").files[0]);
 }
-
 
 //画像認識
 function recognize_image() {
