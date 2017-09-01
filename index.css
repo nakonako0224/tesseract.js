@@ -4,23 +4,18 @@ body {
 	text-align: center;
 }
 
-p {
-	text-align: center;
+h1 {
+	font-size: large;
+	font-style: oblique;
+	background-color: #cccc99;
 }
 
+p {text-align: center;}
+img {text-align: center;}
 a:link { color: #0000ff; }
 a:visited { color: #000080; }
 a:hover { color: #ff0000; }
 a:active { color: #ff8000; }
-
-#cmt {
-	color: #ff0000;
-	font-weight: lighter;
-}
-
-img {
-	text-align: center;
-}
 
 form {
 	font-weight: bold;
@@ -29,6 +24,11 @@ form {
 	padding: 10px;
 	border: 2px solid #cccccc;
 	margin: 30px auto;
+}
+
+#cmt {
+	color: #ff0000;
+	font-weight: lighter;
 }
 
 #l-box {
@@ -41,9 +41,9 @@ form {
 	float: right;
 }
 
-h1 {
-	font-size: large;
-	font-style: oblique;
-	background-color: #cccc99;
+#plat_form {
+	background-color: red;
+	color: rgb(255,255,255);
 }
+
 </style>

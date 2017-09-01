@@ -2,7 +2,7 @@
 function load_check() {
 	var browse = platform.name;
 	if(browse == "IE") {
-		document.getElementById("plat_form").textContent = "IEは非対応です！！" ;
+		document.getElementById("plat_form").textContent = "IEは非対応です！他のブラウザで利用してください！" ;
 	}
 }
 
@@ -56,33 +56,33 @@ function recognize_image() {
 
 //進捗管理
 function progressUpdate(packet){
-	var log = document.getElementById('log');
+	var log = document.getElementById("log");
 
 	if(log.firstChild && log.firstChild.status === packet.status){
-		if('progress' in packet){
-			var progress = log.firstChild.querySelector('progress')
+		if("progress" in packet){
+			var progress = log.firstChild.querySelector("progress")
 			progress.value = packet.progress
 		}
 	}else{
-		var line = document.createElement('div');
+		var line = document.createElement("div");
 		line.status = packet.status;
-		var status = document.createElement('div')
-		status.className = 'status'
+		var status = document.createElement("div")
+		status.className = "status"
 		status.appendChild(document.createTextNode(packet.status))
 		line.appendChild(status)
 
-		if('progress' in packet){
-			var progress = document.createElement('progress')
+		if("progress" in packet){
+			var progress = document.createElement("progress")
 			progress.value = packet.progress
 			progress.max = 1
 			line.appendChild(progress)
 		}
 
 
-		if(packet.status == 'done'){
-			var pre = document.createElement('pre')
+		if(packet.status == "done"){
+			var pre = document.createElement("pre")
 			pre.appendChild(document.createTextNode(packet.data.text))
-			line.innerHTML = ''
+			line.innerHTML = ""
 			line.appendChild(pre)
 
 		}
