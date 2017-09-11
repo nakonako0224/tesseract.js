@@ -6,6 +6,21 @@ function load_check() {
 	}
 }
 
+
+var input_overlay = document.getElementById('input-overlay');
+var ioctx = input_overlay.getContext('2d');
+var txt_out = document.getElementById("text_of_read_image");
+var read_image = document.getElementById('read_image');
+var log = document.getElementById("log");
+
+//canvasのリロード
+function setUp(){
+	input_overlay.width = read_image.naturalWidth
+	input_overlay.height = read_image.naturalHeight
+
+	//output_text.style.height = read_image.height + 'px'
+}
+
 //ファイルの読み込み、画像認識の関数呼び出し
 function read_in() {	
 	var reader = new FileReader();
@@ -14,18 +29,19 @@ function read_in() {
 		read_image.src = reader.result
 		//画像認識関数
 		recognize_image();
+		read_image.onload = function() {
+			setUp();
+		}
 	}
 	// 画像ファイルをdata URLとして読み込むように指示
 	reader.readAsDataURL(document.getElementById("input_image_file").files[0]);
 }
 
-//画像認識
+//画像認識モジュール
 function recognize_image() {
-	//結果出力先の要素を取得
-	var txt_out = document.getElementById("text_of_read_image");
 	//複数回、連続して実行するときのために、最初に中身を捨てる
+	log.innerHTML = "";
 	txt_out.innerHTML = "";
-	msg.innerHTML = "";
 	//指定された言語のコードを取得
 	var lang_list = document.getElementById("lang_options");
 	var selected_lang = lang_list.options[lang_list.selectedIndex].value;
@@ -35,7 +51,7 @@ function recognize_image() {
 	var starthms = startTime.getHours() + ":" + startTime.getMinutes() + "." + startTime.getSeconds();
 	document.getElementById("msg").textContent = "[処理開始" + starthms + "]\n";
 
-	//画像認識
+	//画像認識処理
 	Tesseract.recognize(document.getElementById("read_image").src, { 
 			lang: selected_lang
 		})
@@ -45,7 +61,22 @@ function recognize_image() {
 			console.log("ERROR: " + e);
 		})
 		.then(function(result) {
+			console.log('result was:', result)
 	  		txt_out.innerHTML = result.text;
+			progressUpdate({ status: 'done', data: result })
+			//canvasへ描画
+			ioctx.drawImage(read_image, 0, 0);
+			result.words.forEach(function(w){
+				var b = w.bbox;
+				ioctx.strokeWidth = 2
+				ioctx.strokeStyle = 'red'
+				ioctx.strokeRect(b.x0, b.y0, b.x1-b.x0, b.y1-b.y0)
+				ioctx.beginPath()
+				ioctx.moveTo(w.baseline.x0, w.baseline.y0)
+				ioctx.lineTo(w.baseline.x1, w.baseline.y1)
+				ioctx.strokeStyle = 'green'
+				ioctx.stroke()
+			})
 		})
 		.finally(function(r) {
 			var endTime = new Date();
@@ -56,7 +87,6 @@ function recognize_image() {
 
 //進捗管理
 function progressUpdate(packet){
-	var log = document.getElementById("log");
 
 	if(log.firstChild && log.firstChild.status === packet.status){
 		if("progress" in packet){
@@ -78,15 +108,12 @@ function progressUpdate(packet){
 			line.appendChild(progress)
 		}
 
-
 		if(packet.status == "done"){
-			var pre = document.createElement("pre")
-			pre.appendChild(document.createTextNode(packet.data.text))
-			line.innerHTML = ""
-			line.appendChild(pre)
-
+			//var pre = document.createElement("pre")
+			//pre.appendChild(document.createTextNode(packet.data.text))
+			//line.innerHTML = ""
+			//line.appendChild(pre)
 		}
-
 		log.insertBefore(line, log.firstChild)
 	}
 }

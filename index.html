@@ -4,9 +4,6 @@
 	<meta charset="UTF-8">
     <title>文字読取</title>
 	<link rel="stylesheet" type="text/css" href="./index.css">
-	<script src="./platform.js"></script>
-	<script src="https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js"></script>
-	<script type="text/javascript" src="./index.js"></script>
 </head>
 <body onLoad="load_check()">
 	<a href="https://github.com/KM04092/tesseract.js" target="_blank">Githubリンク（サンプル動画）</a>
@@ -41,11 +38,16 @@
 	<hr>
 	<div id="l-box">
 		<h1>対象画像</h1>
-		<p><img id="read_image"  src="" alt="Nothing" width="200"></p>
+		<p><img id="read_image"  src="" alt="Nothing"></p>
+		<p><canvas id="input-overlay"  width="1486" height="668"></p>
 	</div>
 	<div id="r-box">	
 		<h1>処理状況</h1>
 		<p id="log" style="height: 214px; display: block;">Nothing</p>
 	</div>
+
+	<script src="./platform.js"></script>
+	<script src="https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js"></script>
+	<script type="text/javascript" src="./index.js"></script>
 </body>
 </html>

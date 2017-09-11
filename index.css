@@ -1,5 +1,8 @@
 ﻿<style>
-body {
+body, html{
+	top: 0;
+	margin: 0;
+	width: 100%;
     font-family: Meiryo;
 	text-align: center;
 }
@@ -11,7 +14,6 @@ h1 {
 }
 
 p {text-align: center;}
-img {text-align: center;}
 a:link { color: #0000ff; }
 a:visited { color: #000080; }
 a:hover { color: #ff0000; }
@@ -32,18 +34,46 @@ form {
 }
 
 #l-box {
-	width: 49%;
+	position: relative;
     float: left;
+	width: 49%;
 }
 
 #r-box {
+    float: right;
 	width: 49%;
-	float: right;
 }
 
 #plat_form {
 	background-color: red;
 	color: rgb(255,255,255);
+}
+
+#read_image {
+	position: absolute;
+	top: 50;
+	left: 0;
+	right: 0;
+	bottom: auto;
+	margin:0 auto;
+	max-width: 49%;
+	box-sizing: border-box;
+	/*padding: 5px;
+	margin-top: 10px;
+    border: 1px solid #ddd;*/
+}
+
+#input-overlay {
+	position: absolute;
+	top: 50;
+	left: 0;
+	right: 0;
+	bottom: auto;
+	margin:0 auto;
+	max-width: 49%;
+	box-sizing: border-box;
+	/*margin-top: 10px;
+	padding: 5px;*/
 }
 
 </style>
