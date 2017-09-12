@@ -62,7 +62,6 @@ function recognize_image() {
 		})
 		.then(function(result) {
 			console.log('result was:', result)
-	  		txt_out.innerHTML = result.text;
 			progressUpdate({ status: 'done', data: result })
 			//canvasへ描画
 			ioctx.drawImage(read_image, 0, 0);
@@ -109,10 +108,12 @@ function progressUpdate(packet){
 		}
 
 		if(packet.status == "done"){
-			//var pre = document.createElement("pre")
-			//pre.appendChild(document.createTextNode(packet.data.text))
-			//line.innerHTML = ""
-			//line.appendChild(pre)
+			var pre = document.createElement("pre")
+			pre.appendChild(document.createTextNode(packet.data.text))
+			line.innerHTML = ""
+			line.appendChild(pre)
+			txt_out.insertBefore(line, txt_out.firstChild)
+			return;
 		}
 		log.insertBefore(line, log.firstChild)
 	}
