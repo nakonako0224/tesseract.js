@@ -53,7 +53,8 @@ function recognize_image() {
 
 	//画像認識処理
 	Tesseract.recognize(document.getElementById("read_image").src, { 
-			lang: selected_lang
+			lang: selected_lang,
+			textord_noise_hfract: "0.1" //defult 0.015625
 		})
 		.progress(progressUpdate)
 		.catch(function(e) {
