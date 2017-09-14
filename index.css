@@ -28,6 +28,10 @@ form {
 	margin: 30px auto;
 }
 
+ul {
+	text-align: Left;
+}
+
 #cmt {
 	color: #ff0000;
 	font-weight: lighter;
@@ -74,6 +78,50 @@ form {
 	box-sizing: border-box;
 	/*margin-top: 10px;
 	padding: 5px;*/
+}
+
+.accbox {
+	text-align: center;
+	margin:0 auto;
+    padding: 0;
+    max-width: 500px;
+}
+
+
+.accbox label {
+    display: block;
+    margin: 1.0px 0;
+    padding : 2px 3px;
+    color :#2f8fcf;
+    font-weight: bold;
+    background :#a4cbf3;
+    cursor :pointer;
+    transition: all 0.5s;
+}
+
+.accbox label:hover {
+    background :#85baef;
+}
+
+#label1 {
+    display: none;
+}
+
+.accbox .accshow {
+    font-weight: lighter;
+	height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+.cssacc:checked + .accshow {
+    height: auto;
+    padding: 2px;
+    background: #eaeaea;
+    opacity: 1;
+	display: block
 }
 
 </style>

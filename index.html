@@ -26,9 +26,19 @@
 				<input type="button" value="実行" onClick="read_in()">
 			</li>
 		</ol>
-		<p id="cmt">
-
-		</p>
+		<p id="cmt"></p>
+		<div class="accbox" id="accbox">
+		    <label for="label1">パラメータ</label>
+		    <input type="checkbox" id="label1" class="cssacc" />
+		    <div class="accshow">
+				<ul>
+					<li>[0-9]数字判定のみ
+						<input type="text" id="ul1" value="0" style="width:50px;">
+					<li>スペックルノイズ除去対象の輪郭高さ割合
+			    		<input type="text" id="ul2" value="0.1" style="width:50px;">  <!--defult 0.015625-->
+		    	</ul>
+			</div>
+		</div>		
     </form>
 	<hr>
 		<h1>読取結果</h1>

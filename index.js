@@ -51,10 +51,15 @@ function recognize_image() {
 	var starthms = startTime.getHours() + ":" + startTime.getMinutes() + "." + startTime.getSeconds();
 	document.getElementById("msg").textContent = "[処理開始" + starthms + "]\n";
 
+
+	var ul1 = document.getElementById("ul1");
+	var ul2 = document.getElementById("ul2");
+
 	//画像認識処理
 	Tesseract.recognize(document.getElementById("read_image").src, { 
 			lang: selected_lang,
-			textord_noise_hfract: "0.1" //defult 0.015625
+			classify_bln_numeric_mode: ul1.value,
+			textord_noise_hfract: ul2.value
 		})
 		.progress(progressUpdate)
 		.catch(function(e) {
